@@ -1,13 +1,13 @@
 jenkinsdata:
  build: jenkins-data
 jenkinsmaster:
- image: jenkins
+ image: my_jenkins
  volumes_from:
   - jenkinsdata
  ports:
   - "50000:50000"
 jenkinsnginx:
- image: nginx
+ image: my_nginx
  ports:
   - "80:80"
  links:
