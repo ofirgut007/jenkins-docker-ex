@@ -1,0 +1,28 @@
+version: "3.4"
+services:
+  jenkinsmaster:
+   image: levep79/my_jenkins
+   deploy:
+     placement:
+       constraints:
+         - node.hostname == Lev-Lt
+   volumes:
+     - jenkins_home:/var/jenkins_home
+     - jenkins_log:/var/log/jenkins
+   ports:
+    - "50000:50000"
+  jenkinsnginx:
+   image: levep79/my_nginx
+   deploy:
+     placement:
+       constraints:
+         - node.hostname == Lev-Lt
+   ports:
+    - "80:80"
+networks:
+  default:
+    external:
+      name: jenkins
+volumes:
+  jenkins_home:
+  jenkins_log:
